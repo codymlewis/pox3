@@ -2,7 +2,7 @@
 
 This is a python3 port of [POX](https://github.com/noxrepo/pox), a networking
 software platform written in Python.
-POX3 is forked from POX as its goal it to provide a package based library for
+POX3 is forked from POX (Version eel 0.5.0) as its goal it to provide a package based library for
 constructing controllers.
 
 ## History and Details
