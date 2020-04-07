@@ -21,7 +21,7 @@ special support for the Open vSwitch/Nicira extensions.
 
 The following example runs with debug logging the of tutorial, it acts
 like a simple hub
-```
+```python
 from pox.boot import boot
 
 boot(["log.level", "--DEBUG", "misc.of_tutorial"])
