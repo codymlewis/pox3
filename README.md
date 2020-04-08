@@ -17,6 +17,11 @@ fine with Python 3.7 or even 3.6), and should run under Linux, Mac OS, and Windo
 POX3 currently communicates with OpenFlow 1.0 switches and includes
 special support for the Open vSwitch/Nicira extensions.
 
+## Installation
+```sh
+pip3 install pox3
+```
+
 ## API
 
 The following example runs with debug logging the of tutorial, it acts
