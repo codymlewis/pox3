@@ -691,8 +691,8 @@ class TelnetHandler (StateMachine):
     self.__buf = b''
 
   def _rx_telnet (self, msg):
-    #self.log.info(" ".join("%02x" % (ord(x),) for x in msg))
-    print(" ".join("%02x" % (ord(x),) for x in msg), end=' ')
+    #self.log.info(" ".join("%02x" % (x,) for x in msg))
+    print(" ".join("%02x" % (x,) for x in msg), end=' ')
 
   @property
   def log (self):
@@ -764,7 +764,6 @@ class TelnetHandler (StateMachine):
         # Try again later
         self.__unread(r)
         return
-      #opt = ord(opt)
       if r == WILL:
         self._handle_will(opt)
       elif r == WONT:
@@ -828,7 +827,7 @@ class TelnetHandler (StateMachine):
     Called after receiving subnegotiation information
     """
     s = "[SB|"
-    s += " ".join("%02x" % (ord(x),) for x in sub)
+    s += " ".join("%02x" % (x,) for x in sub)
     s += "|" + repr(sub) + "]"
     self.log.debug(s)
 

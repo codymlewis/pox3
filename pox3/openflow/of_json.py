@@ -251,7 +251,7 @@ def fix_parsed (m):
   if m is None:
     return {"type":"raw","data":[]}
   if isinstance(m, str):
-    return {"type":"raw","data":[ord(b) for b in m]}
+    return {"type":"raw","data":[b for b in m]}
   assert isinstance(m, packet_base)
   if not m.parsed:
     u = fix_parsed(m.raw)
@@ -266,7 +266,7 @@ def fix_parsed (m):
   if hasattr(m, "payload"):
     r['payload'] = fix_parsed(m.payload)
   if 'raw' in r:
-    #r['raw'] = [ord(b) for b in m['raw']]
+    #r['raw'] = [b for b in m['raw']]
     del r['raw']
   if 'next' in r: del r['next']
   r['type'] = m.__class__.__name__

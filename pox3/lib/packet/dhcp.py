@@ -164,8 +164,8 @@ class dhcp(packet_base):
         elif self.chaddr is not None:
             s += ' '.join(["{0:02x}".format(x) for x in self.chaddr])
         s += ' magic:'+' '.join(
-            ["{0:02x}".format(ord(x)) for x in self.magic])
-        #s += ' options:'+' '.join(["{0:02x}".format(ord(x)) for x in
+            ["{0:02x}".format(x) for x in self.magic])
+        #s += ' options:'+' '.join(["{0:02x}".format(x) for x in
         #                          self._raw_options])
         if len(self.options):
           s += ' options:'
@@ -246,7 +246,7 @@ class dhcp(packet_base):
         ofs = 0;
         l = len(barr)
         while ofs < l:
-            opt = ord(barr[ofs])
+            opt = barr[ofs]
             if opt == dhcp.END_OPT:
                 return
             ofs += 1
@@ -255,7 +255,7 @@ class dhcp(packet_base):
             if ofs >= l:
                 self.warn('DHCP option ofs extends past segment')
                 return
-            opt_len = ord(barr[ofs])
+            opt_len = barr[ofs]
             ofs += 1         # Account for the length octet
             if ofs + opt_len > l:
                 return False
@@ -382,10 +382,10 @@ class DHCPRawOption (DHCPOption):
 
   def __repr__ (self):
     data = self.data
-    if not all(ord(c)<127 and c in string.printable for c in data):
-      data = " ".join("%02x" % (ord(x),) for x in data)
+    if not all(c<127 and c in string.printable for c in data):
+      data = " ".join("%02x" % (x,) for x in data)
     else:
-      data = "".join(x if ord(x) >= 32 else "." for x in data)
+      data = "".join(x if x >= 32 else "." for x in data)
     if len(data) > 30:
       data = data[:30] + "..."
     n = self._name
@@ -474,7 +474,7 @@ class DHCPMsgTypeOption (DHCPOption):
   def unpack (cls, data, code = None):
     self = cls()
     if len(data) != 1: raise RuntimeError("Bad option length")
-    self.type = ord(data[0])
+    self.type = data[0]
     return self
 
   def pack (self):
@@ -542,7 +542,7 @@ class DHCPOptionOverloadOption (DHCPOption):
   def unpack (cls, data, code = None):
     self = cls()
     if len(data) != 1: raise RuntimeError("Bad option length")
-    self.value = ord(data[0])
+    self.value = data[0]
     return self
 
   def pack (self):
@@ -575,7 +575,7 @@ class DHCPParameterRequestOption (DHCPOption):
   @classmethod
   def unpack (cls, data, code = None):
     self = cls()
-    self.options = [ord(x) for x in data]
+    self.options = [x for x in data]
     return self
 
   def pack (self):

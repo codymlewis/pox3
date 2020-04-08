@@ -134,7 +134,7 @@ class tcp_opt (object):
       return mptcp_opt.unpack_new(buf, offset)
     else:
       #self.msg('(tcp parse_options) warning, unknown option %x '
-      #         % (ord(arr[i]),))
+      #         % (arr[i],))
       o.val = arr[i+2:i+2+length]
 
     return offset+length,o

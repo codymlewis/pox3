@@ -126,12 +126,12 @@ class EthAddr (object):
     have a destination MAC address within this range are not relayed by
     bridges conforming to IEEE 802.1D
     """
-    return  ((ord(self._value[0]) == 0x01)
-    	and (ord(self._value[1]) == 0x80)
-    	and (ord(self._value[2]) == 0xC2)
-    	and (ord(self._value[3]) == 0x00)
-    	and (ord(self._value[4]) == 0x00)
-    	and (ord(self._value[5]) <= 0x0F))
+    return  ((self._value[0] == 0x01)
+    	and (self._value[1] == 0x80)
+    	and (self._value[2] == 0xC2)
+    	and (self._value[3] == 0x00)
+    	and (self._value[4] == 0x00)
+    	and (self._value[5] <= 0x0F))
 
   @property
   def is_bridge_filtered (self):
@@ -147,7 +147,7 @@ class EthAddr (object):
     """
     Returns True if this is a locally-administered (non-global) address.
     """
-    return True if (ord(self._value[0]) & 2) else False
+    return True if (self._value[0] & 2) else False
 
   @property
   def is_local (self):
@@ -161,7 +161,7 @@ class EthAddr (object):
     """
     Returns True if this is a multicast address.
     """
-    return True if (ord(self._value[0]) & 1) else False
+    return True if (self._value[0] & 1) else False
 
   @property
   def is_multicast (self):
@@ -185,7 +185,7 @@ class EthAddr (object):
     Returns a 6-entry long tuple where each entry is the numeric value
     of the corresponding byte of the address.
     """
-    return tuple((ord(x) for x in self._value))
+    return tuple((x for x in self._value))
 
   def toStr (self, separator = ':', resolveNames  = False):
     return self.to_str(separator, resolveNames)
@@ -202,10 +202,10 @@ class EthAddr (object):
       # Don't even bother for local (though it should never match and OUI!)
       name = _eth_oui_to_name.get(self._value[:3])
       if name:
-        rest = separator.join('%02x' % (ord(x),) for x in self._value[3:])
+        rest = separator.join('%02x' % (x,) for x in self._value[3:])
         return name + separator + rest
 
-    return separator.join(('%02x' % (ord(x),) for x in self._value))
+    return separator.join(('%02x' % (x,) for x in self._value))
 
   def __str__ (self):
     return self.toStr()

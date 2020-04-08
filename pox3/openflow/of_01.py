@@ -553,11 +553,11 @@ class OFCaptureSocket (CaptureSocket):
     self._rbuf += buf
     l = len(self._rbuf)
     while l > 4:
-      if ord(self._rbuf[0]) != of.OFP_VERSION:
+      if self._rbuf[0] != of.OFP_VERSION:
         log.error("Bad OpenFlow version while trying to capture trace")
         self._enabled = False
         break
-      packet_length = ord(self._rbuf[2]) << 8 | ord(self._rbuf[3])
+      packet_length = self._rbuf[2] << 8 | self._rbuf[3]
       if packet_length > l: break
       try:
         self._writer.write(False, self._rbuf[:packet_length])
@@ -572,11 +572,11 @@ class OFCaptureSocket (CaptureSocket):
     self._sbuf += buf
     l = len(self._sbuf)
     while l > 4:
-      if ord(self._sbuf[0]) != of.OFP_VERSION:
+      if self._sbuf[0] != of.OFP_VERSION:
         log.error("Bad OpenFlow version while trying to capture trace")
         self._enabled = False
         break
-      packet_length = ord(self._sbuf[2]) << 8 | ord(self._sbuf[3])
+      packet_length = self._sbuf[2] << 8 | self._sbuf[3]
       if packet_length > l: break
       try:
         self._writer.write(True, self._sbuf[:packet_length])
@@ -911,7 +911,7 @@ class Connection (EventMixin):
       # correctly call libopenflow to unpack it.
 
       # print(self.buf[offset+1])
-      # ofp_type = ord(self.buf[offset+1])
+      # ofp_type = self.buf[offset+1]
       ofp_type = self.buf[offset+1]
 
       if self.buf[offset] != of.OFP_VERSION:
@@ -920,7 +920,7 @@ class Connection (EventMixin):
           pass
         else:
           log.warning("Bad OpenFlow version (0x%02x) on connection %s"
-                      % (ord(self.buf[offset]), self))
+                      % (self.buf[offset], self))
           return False # Throw connection away
 
       msg_length = self.buf[offset+2] << 8 | self.buf[offset+3]

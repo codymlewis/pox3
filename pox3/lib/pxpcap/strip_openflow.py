@@ -55,8 +55,8 @@ def pi_cb (data, parser):
        packet.find('tcp').srcport == _of_port:
       p = packet.find('tcp').payload
       assert p[0] == '\x01'
-      t = ord(p[1])
-      packet_length = ord(p[2]) << 8 | ord(p[3])
+      t = p[1]
+      packet_length = p[2] << 8 | p[3]
       if packet_length != len(p):
         log.error("%s != %s" % (packet_length, len(p)))
       if t == of.OFPT_PACKET_IN:

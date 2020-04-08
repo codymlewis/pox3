@@ -74,7 +74,7 @@ class llc (packet_base):
       if dlen < self.length + 1:
         self.msg('(llc parse) warning: packet data too short')
         return
-      self.control |= (ord(raw[3:4]) << 8)
+      self.control |= (raw[3:4] << 8)
       self.length = 4
 
     if (self.ssap & 0xfe) == 0xaa:

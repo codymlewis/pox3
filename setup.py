@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     LONG_DESCRIPTION = fh.read()
 
 setuptools.setup(
-    name="pox3-codymlewis", # Replace with your own username
-    version="0.1.post0",
+    name="pox3",
+    version="0.1.0",
     author="Cody Lewis",
     author_email="cody@codymlewis.com",
     description="A networking software library",
