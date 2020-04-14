@@ -1,0 +1,7 @@
+include pox3/lib/oui.txt
+include pox3/web/*.html
+include pox3/web/*.js
+include pox3/lib/pxpcap/pxpcap_c/build_linux
+include pox3/lib/pxpcap/pxpcap_c/build_mac
+include pox3/lib/pxpcap/pxpcap_c/build_win.bat
+include pox3/lib/pxpcap/pxpcap_c/pxpcap.cpp
