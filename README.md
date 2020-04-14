@@ -24,10 +24,14 @@ pip3 install pox3
 
 ## API
 
-The following example runs with debug logging the of tutorial, it acts
+The following example runs with debug logging, it acts
 like a simple hub
 ```python
 from pox3.boot import boot
 
-boot(["log.level", "--DEBUG", "misc.of_tutorial"])
+boot(["log.level", "--DEBUG", "forwarding.hub"])
 ```
+
+To learn further I would recommend getting the `act_like_switch` method to work
+in `samples/of_tutorial.py`, you will need to read the pox3 source code a bit
+particularly the files in `pox3/lib/packet/`

@@ -187,7 +187,7 @@ class POXCore (EventMixin):
     RereadConfiguration,
   ])
 
-  version = (0, 1, 0)
+  version = (0, 1, 1)
   version_name = "auldridge"
 
   def __init__ (self, threaded_selecthub=True, epoll_selecthub=False,

@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pox3",
-    version="0.1.0",
+    version="0.1.1",
     author="Cody Lewis",
     author_email="cody@codymlewis.com",
     description="A networking software library",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
-    url="https://gitlab.com/codymlewis/pox3",
+    url="https://github.com/codymlewis/pox3",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
